@@ -5,11 +5,12 @@ import json
 import os
 import time
 
-# The model testing the win rate
+# The model testing the win rate. Using reference or another model
 judge_model = 'gpt-4o-mini'
+using_ref_completions = False
 
 # Load the answers
-with open("wim1.0-completions.txt", "r", encoding="utf-8") as f:
+with open("Completions/wim1.0-completions.txt", "r", encoding="utf-8") as f:
     raw = f.read()
 model_completions = re.findall(r"\{\n(.*?)\n\}", raw, flags=re.DOTALL)
 print('Loaded the completions')
@@ -22,7 +23,15 @@ if num_examples is not None:
 
 # Reference completions
 prompts = dataset["prompt"]
-reference_completions = dataset["completion"]
+
+if using_ref_completions:
+    reference_completions = dataset["completion"]
+else:
+    with open("Completions/base-completions.txt", "r", encoding="utf-8") as f:
+        raw = f.read()
+    reference_completions = re.findall(r"\{\n(.*?)\n\}", raw, flags=re.DOTALL)
+    print('Loaded the other model completions')
+
 print('Loaded the datasets')
 
 # Load the openai API token
@@ -53,7 +62,7 @@ for i in range(0, len(prompts), batch_size):
 
     total_done += batch_size
     print(f'Done {total_done} / {num_examples}')
-    time.sleep(2)
+    time.sleep(4)
 
 best_idxs = delayed_results
 model_win_rate = best_idxs.count(1) / len(best_idxs)
