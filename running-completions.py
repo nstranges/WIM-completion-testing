@@ -21,12 +21,14 @@ if num_examples is not None:
     dataset = dataset.select(range(num_examples))
 
 # Extract the prompts and reference completions
-prompts = dataset["prompt"]
-reference_completions = dataset["completion"]
+raw_prompts = dataset["prompt"]
 
 # Run the model completions
 model_completions = []
-for i, prompt in enumerate(prompts):
+for i, raw_prompt in enumerate(raw_prompts):
+    # Extract the correct content
+    prompt = raw_prompt[0]['content']
+
     inputs = tokenizer(prompt, return_tensors="pt").to(device)
     with torch.no_grad():
         outputs = model.generate(
