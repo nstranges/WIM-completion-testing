@@ -1,11 +1,11 @@
 import statsmodels.stats.proportion as smp
 
 # Example
-wins_A = 520
-total_A = 1000
+wins_A = 1037
+total_A = 2000
 
-wins_B = 501
-total_B = 1000
+wins_B = 1018
+total_B = 2000
 
 # Proportion (win rate)
 prop_A = wins_A / total_A

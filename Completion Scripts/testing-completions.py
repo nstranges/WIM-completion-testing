@@ -10,7 +10,7 @@ judge_model = 'gpt-4o-mini'
 using_ref_completions = False
 
 # Load the answers
-with open("../Completions/TLDR/wim0.0-completions.txt", "r", encoding="utf-8") as f:
+with open("Completions/TLDR/wim0.0-completions.txt", "r", encoding="utf-8") as f:
     raw = f.read()
 model_completions = re.findall(r"\{\n(.*?)\n\}", raw, flags=re.DOTALL)
 print('Loaded the completions')
@@ -27,7 +27,7 @@ prompts = dataset["prompt"]
 if using_ref_completions:
     reference_completions = dataset["completion"]
 else:
-    with open("../Completions/TLDR/base-completions.txt", "r", encoding="utf-8") as f:
+    with open("Completions/TLDR/base-completions.txt", "r", encoding="utf-8") as f:
         raw = f.read()
     reference_completions = re.findall(r"\{\n(.*?)\n\}", raw, flags=re.DOTALL)
     print('Loaded the other model completions')
