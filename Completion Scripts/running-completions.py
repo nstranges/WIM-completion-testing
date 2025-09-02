@@ -4,7 +4,7 @@ from trl import HfPairwiseJudge, OpenAIPairwiseJudge
 import torch
 
 # Parameters
-model_path = '/home/nstrang2/scratch/FinishedLLMs/Meta-Llama-3-8B-Instruct-OnlineDPO-WIM-Zeta0.0'
+model_path = '/home/nstrang2/scratch/FinishedLLMs/Meta-Llama-3-8B-Instruct-OnlineDPO-WIM-Zeta0.0-V2'
 
 # Load model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
