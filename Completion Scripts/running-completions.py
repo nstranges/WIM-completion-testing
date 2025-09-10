@@ -4,7 +4,7 @@ from trl import HfPairwiseJudge, OpenAIPairwiseJudge
 import torch
 
 # Parameters
-model_path = '/home/nstrang2/scratch/FinishedLLMs/Meta-Llama-3-8B-Instruct-OnlineDPO-WIM-Zeta0.0-V2'
+model_path = '/home/nstrang2/scratch/FinishedLLMs/Meta-Llama-3-8B-Instruct-OnlineDPO-Random-V2'
 
 # Load model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -16,7 +16,7 @@ model.eval()
 num_examples = 1000
 
 # Load the dataset
-dataset = load_dataset("/home/nstrang2/scratch/Datasets/tldr/", split="validation")
+dataset = load_dataset("/home/nstrang2/scratch/Datasets/ultrafeedback-prompt/", split="test")
 if num_examples is not None:
     dataset = dataset.select(range(num_examples))
 
