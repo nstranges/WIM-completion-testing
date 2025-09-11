@@ -27,7 +27,7 @@ raw_prompts = dataset["prompt"]
 model_completions = []
 for i, raw_prompt in enumerate(raw_prompts):
     # Extract the correct content
-    prompt = raw_prompt
+    prompt = raw_prompt[0]['content']
 
     inputs = tokenizer(prompt, return_tensors="pt").to(device)
     with torch.no_grad():
