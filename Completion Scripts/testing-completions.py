@@ -17,7 +17,7 @@ print('Loaded the completions')
 
 # Load the dataset
 num_examples = 1000
-dataset = load_dataset("trl-lib/tldr", split="validation")
+dataset = load_dataset("trl-lib/ultrafeedback-prompt", split="test")
 if num_examples is not None:
     dataset = dataset.select(range(num_examples))
 
